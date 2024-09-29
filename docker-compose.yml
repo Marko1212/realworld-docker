@@ -24,6 +24,7 @@ services:
       - AUTH_API_URL=http://auth:3002/api
     depends_on:
       - api_db
+      - mailhog # Ensure that MailHog starts before the api service
     networks:
       - realworld-docker-network
   
@@ -68,6 +69,14 @@ services:
       - frontend
       - api
       - auth
+    networks:
+      - realworld-docker-network
+  
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"  # Web interface for viewing sent emails
+      - "1025:1025"  # SMTP port for sending emails
     networks:
       - realworld-docker-network
 

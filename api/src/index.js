@@ -1,16 +1,44 @@
 const express = require('express')
+const nodemailer = require('nodemailer');
 const mongoose = require('mongoose')
 const axios = require('axios')
 const { port, host, db, authApiUrl } = require('./configuration')
 const { connectDb } = require('./helpers/db')
 
 const app = express()
+app.use(express.json());
+
 const kittySchema = new mongoose.Schema({
     name: String
 })
 
 // creation of collection 'kittens' inside 'api' database
 const Kitten = mongoose.model("Kitten", kittySchema)
+
+// Configure nodemailer (using Mailhog SMTP settings)
+const transporter = nodemailer.createTransport({
+    host: 'mailhog', // This will be the service name in Docker Compose
+    port: 1025,
+    secure: false, // Mailhog doesn’t use SSL
+  });
+
+  app.post('/send-email', (req, res) => {
+    const { to, subject, text } = req.body;
+  
+    const mailOptions = {
+      from: 'test@example.com',
+      to,
+      subject,
+      text,
+    };
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.status(500).json({ message: 'Error sending email', error });
+      }
+      res.status(200).json({ message: 'Email sent', info });
+    });
+  });
 
 app.get('/test', (req, res) => {
     res.send('Our api server is working correctly');
