@@ -1,6 +1,6 @@
 # realworld-docker
 
-Email sending can be tested with curl.
+Email sending can be tested with ```curl```.
 
 In production environment:
 
