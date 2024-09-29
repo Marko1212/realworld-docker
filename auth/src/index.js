@@ -1,7 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 const mongoose = require('mongoose')
-const { port, host, db, apiUrl } = require('./configuration')
+const { port, db, apiUrl } = require('./configuration')
 const { connectDb } = require('./helpers/db')
 
 const app = express()
@@ -29,7 +29,7 @@ app.get('/testwithapidata', (req, res) => {
 const startServer = () => {
     app.listen(port, () => {
         console.log(`Started authentication service on port ${port}`);
-        console.log(`Our host is ${host}`);
+        //  console.log(`Our host is ${host}`);
         console.log(`Database url ${db}`);
     })
 }
