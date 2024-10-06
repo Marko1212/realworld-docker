@@ -88,7 +88,7 @@ networks:
   realworld-docker-network:
     driver: bridge
 
-# For the first volume above (mongdb_api), on Windows, the data are saved in the following
+# For the first volume above (mongodb_api), on Windows, the data are saved in the following
 # folder (inside the WSL 2 filesystem, that is, in the Linux subfolder) :
 # \\wsl.localhost\docker-desktop-data\data\docker\volumes\realworld-docker_mongodb_api
 # similar paths are created for all the other volumes
