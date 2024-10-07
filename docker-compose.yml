@@ -21,7 +21,7 @@ services:
       - PORT=3001
   #    - HOST=http://realworld.com
       - MONGO_URL=mongodb://api_db:27017/api
-      - AUTH_API_URL=http://auth:3002/api
+      - AUTH_API_URL=http://auth:3002
     depends_on:
       - api_db
       - mailhog # Ensure that MailHog starts before the api service
@@ -39,7 +39,7 @@ services:
       - PORT=3002
    #   - HOST=http://realworld.com
       - MONGO_URL=mongodb://auth_db:27017/auth
-      - API_URL=http://api:3001/api
+      - API_URL=http://api:3001
     depends_on:
       - auth_db
     networks:
