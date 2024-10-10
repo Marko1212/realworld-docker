@@ -76,7 +76,7 @@ services:
     image: mailhog/mailhog:latest
     expose:
       - "1025" # expose port 1025 to other containers inside the network (NOT to external host)
-      # this is optional as the containers share the network
+      # this is optional as the containers share the same network
       # as mailhog is running on port 1025 by default, the other
       # containers inside docker network can access it even without EXPOSE, but it is
       # good practice to write it
